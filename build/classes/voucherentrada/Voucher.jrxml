@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-10-05T18:06:19 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Voucher" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="237caef1-8696-44b8-a1ec-7631d80cd6c8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="logo" class="java.awt.Image"/>
+	<parameter name="hospede" class="java.lang.String"/>
+	<parameter name="valorTotal" class="java.lang.String"/>
+	<parameter name="valorRecebido" class="java.lang.String"/>
+	<parameter name="in" class="java.lang.String"/>
+	<parameter name="out" class="java.lang.String"/>
+	<parameter name="numPessoas" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="recepcionista" class="java.lang.String"/>
+	<parameter name="tipo" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="andar" class="java.lang.String"/>
+	<parameter name="saldo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<title>
+		<band height="85" splitType="Stretch">
+			<image>
+				<reportElement x="10" y="4" width="380" height="77" uuid="ea2e6898-ca6d-427d-bde8-1cc7268f2d50"/>
+				<graphicElement fill="Solid"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="9" width="170" height="30" uuid="4895513c-3130-4026-b853-f93260e6d3c0"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[Voucher de Entrada]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="225" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="150" height="30" uuid="d99b6cca-a40b-4b10-b5f7-5f4460422165"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[Reserva em nome de:  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="150" height="30" uuid="95f42038-d2df-4d30-8844-040a224bbb28"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[Check-in:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="150" height="30" uuid="3375e26a-7022-43cf-b171-376637d61348"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[Check-out:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="150" height="30" uuid="13102814-1561-4dd9-b555-17bb65fce7bc"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[Tipo de Suíte:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="120" width="150" height="30" uuid="c54d0280-0769-440a-9064-e8a54c42fe90"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[Andar:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="120" width="150" height="30" uuid="0d8711c9-1274-4c3c-a0a8-4d91a97ae393"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[Número de Pessoas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="150" width="150" height="30" uuid="06cb34b9-4cbd-45b8-9d33-8212ac682a11"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[Valor Total do Pacote: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="180" width="150" height="30" uuid="d7f828a2-4f5c-4eb5-bdd8-d6b1968ece23"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[Recebido:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="180" width="60" height="30" uuid="8c0133eb-9439-4a43-8e0e-4c15331011a0"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[Saldo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="0" width="400" height="30" uuid="96e784c9-e693-4c0d-9cd8-cfa7be2cf997"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{hospede}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="30" width="400" height="30" uuid="739faee6-d1dd-40db-807d-6f624079644f"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{in}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="60" width="400" height="30" uuid="0793a727-3f66-4b68-82e4-8dcdf4d7bdd5"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{out}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="90" width="400" height="30" uuid="fbfba395-e3d0-42c5-a845-832933aa8d61"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="120" width="120" height="30" uuid="71d4cba9-e71c-466e-aab6-88c88ac92652"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{andar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="150" width="120" height="30" uuid="95a9c57d-8cf9-4b63-a495-e0472b146a73"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{valorTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="180" width="120" height="30" uuid="f8b7f42d-3172-4f4d-94ea-fc0e51c805bc"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{valorRecebido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="180" width="120" height="30" uuid="69caad4e-09c9-4e74-b76f-bec5577e235b"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{saldo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="120" width="120" height="30" uuid="53da3fe5-a59c-43d8-8d3e-0c1730fabf45"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numPessoas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="442">
+			<staticText>
+				<reportElement x="0" y="0" width="160" height="30" uuid="b3e5d3e6-662d-45a8-8d02-a63da2234795"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Informações Adicionais:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="550" height="39" uuid="f68646c5-551a-4db7-a4b8-b1ce2f3a3270"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Pacotes fechados serão cobrados integralmente, o check-out antecipado não dará direito à devolução ou restituição de valores.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="550" height="60" uuid="8825ace5-1618-4404-8ab7-572bdd997ab8">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Black" size="12" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Prazo de cancelamento de hospedagem até 30 dias antes do check-in. Dentro deste período as devoluções serão realizadas através de transferências bancárias, descontados os encargos devidos.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="140" width="550" height="40" uuid="16a721ea-2d1c-487e-ac1c-32e90d0d346e"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Para cancelamentos com menos de 30 dias antes do check-in, o valor já pago, se converterá em Voucher Crédito.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="180" width="550" height="20" uuid="7d65ed4b-89e5-4c7a-91a5-49c25333e445"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Por medidas de segurança, não serão feitas devoluções em dinheiro. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="200" width="550" height="40" uuid="17ba0e23-4773-4b41-a7b9-11262b6647bb"/>
+				<textElement>
+					<font fontName="Arial Black" size="12" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[O não comparecimento na data do check-in, “NO SHOW”, acarretará cobrança da primeira diária.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="260" width="120" height="20" uuid="fa612e35-0d87-41ae-91f1-f781c5d9e3a7">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Black" size="12" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Atenciosamente;]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="280" width="330" height="20" uuid="8931ab12-f264-42f4-83c4-5f209d4287dc"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{recepcionista}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="300" width="70" height="20" uuid="8f2e1565-9dbd-43cd-bef5-4a63ed300fc9">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Black" size="12" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Reservas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="350" width="240" height="20" uuid="124febcf-593c-4225-9ef8-a7037bcb1f63">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Black" size="10" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Av. dos Coqueiros, nº 3775. Cep 88215-000]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="370" width="220" height="20" uuid="2594c94f-af2f-475c-b67b-57c1cc11f2f3">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Black" size="10" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Canto Grande - Bombinhas - SC - Brasil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="390" width="270" height="20" uuid="63a4f265-0e1a-45d5-bcdc-fbfc4f3c803d">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Black" size="10" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Fone: (47) 3393-4841 / 3393-3131 / 3393-4577]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="410" width="320" height="20" uuid="272eeef1-06df-4252-bbda-3f05cad13ab4">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Black" size="10" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Reservas@marinchateau.com / www.marinchateau.com]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>
