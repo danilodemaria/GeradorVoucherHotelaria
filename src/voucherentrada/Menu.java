@@ -64,6 +64,8 @@ public class Menu extends javax.swing.JFrame {
         buttonGerar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         nomeRecepcionista = new javax.swing.JTextField();
+        comboLingua = new javax.swing.JComboBox();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerador de Voucher de Entrada - Marin Chãteau");
@@ -127,7 +129,7 @@ public class Menu extends javax.swing.JFrame {
         numPessoas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         comboTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PLATINUM (SEM VISTA MAR)", "GOLDEN (LATERAL COM VISTA PARA O MAR DA SACADA)", "DIAMOND (FRENTE MAR)", "MASTER (FRENTE MAR COM HIDROMASSAGEM)" }));
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PLATINUM (SEM VISTA MAR)", "GOLDEN (LATERAL - VISTA SACADA)", "DIAMOND (FRENTE MAR)", "MASTER (FRENTE MAR COM HIDROMASSAGEM)" }));
 
         comboAndar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         comboAndar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TÉRREO", "SUPERIOR" }));
@@ -152,6 +154,12 @@ public class Menu extends javax.swing.JFrame {
         jLabel11.setText("Recepcionista");
 
         nomeRecepcionista.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        comboLingua.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        comboLingua.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Português", "Espanhol" }));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setText("Idioma");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,28 +188,32 @@ public class Menu extends javax.swing.JFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10)
                                     .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(22, 22, 22)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(in, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(valorRecebido, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(comboTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(nome)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(numPessoas, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(out, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)))
-                                            .addComponent(buttonGerar)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(in, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(valorRecebido, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(comboTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(nome)
+                                            .addComponent(numPessoas)
+                                            .addComponent(out)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(21, 21, 21)
-                                        .addComponent(comboAndar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(comboAndar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(buttonGerar))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12))
                                 .addGap(43, 43, 43)
-                                .addComponent(nomeRecepcionista)))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboLingua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nomeRecepcionista))))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,9 +261,13 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(nomeRecepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(comboLingua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -263,7 +279,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void buttonGerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonGerarMouseClicked
         double vr = 0, vt = 0, total = 0;
-        String aux1, aux2, saldo,data;
+        String aux1, aux2, saldo,data,lingua;
         JasperReport jr = null;
         String aux = System.getProperty("user.home") + "/Desktop/Voucher de Entrada/";
         JasperPrint jp = null;
@@ -289,6 +305,7 @@ public class Menu extends javax.swing.JFrame {
             img = ImageIO.read(url);
         } catch (IOException e) {
         }
+        if(comboLingua.getSelectedItem().equals("Português")){
 
         try {
             jr = JasperCompileManager.compileReport(this.getClass().getResourceAsStream("/voucherentrada/Voucher.jrxml"));
@@ -308,10 +325,39 @@ public class Menu extends javax.swing.JFrame {
             jp = JasperFillManager.fillReport(jr, params, new JREmptyDataSource());
             JasperViewer.viewReport(jp, false);
             JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nome.getText().toUpperCase() + ".pdf");
+            limpaCampos();
         } catch (JRException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        limpaCampos();
+        
+        }else{
+              try {
+            lingua = String.valueOf(comboAndar.getSelectedItem());
+            jr = JasperCompileManager.compileReport(this.getClass().getResourceAsStream("/voucherentrada/VoucherEsp.jrxml"));
+            if(lingua.equals("TÉRREO")){
+                lingua = "PLANTA BAJA";
+            }
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("hospede", nome.getText().toUpperCase());
+            params.put("valorTotal", "R$ " + valorTotal.getText());
+            params.put("valorRecebido", "R$ " + valorRecebido.getText());
+            params.put("in", in.getText());
+            params.put("out", out.getText());
+            params.put("numPessoas", numPessoas.getText());
+            params.put("saldo", saldo);
+            params.put("recepcionista", nomeRecepcionista.getText() + ".");
+            params.put("tipo", (String) comboTipo.getSelectedItem());
+            params.put("andar", lingua);
+            params.put("logo", img);
+            jp = JasperFillManager.fillReport(jr, params, new JREmptyDataSource());
+            JasperViewer.viewReport(jp, false);
+            JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nome.getText().toUpperCase() + ".pdf");
+            limpaCampos();
+        } catch (JRException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        
     }//GEN-LAST:event_buttonGerarMouseClicked
 
     public void limpaCampos() {
@@ -365,11 +411,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton buttonGerar;
     private javax.swing.JButton buttonSair;
     private javax.swing.JComboBox comboAndar;
+    private javax.swing.JComboBox comboLingua;
     private javax.swing.JComboBox comboTipo;
     private javax.swing.JTextField in;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

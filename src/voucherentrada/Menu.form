@@ -50,37 +50,44 @@
                                   <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="buttonSair" min="-2" pref="95" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="in" min="-2" pref="191" max="-2" attributes="0"/>
-                                              <Component id="valorRecebido" min="-2" pref="191" max="-2" attributes="0"/>
-                                              <Component id="valorTotal" min="-2" pref="191" max="-2" attributes="0"/>
-                                              <Component id="comboTipo" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="nome" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="numPessoas" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="out" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="buttonGerar" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="in" min="-2" pref="191" max="-2" attributes="0"/>
+                                          <Component id="valorRecebido" min="-2" pref="191" max="-2" attributes="0"/>
+                                          <Component id="valorTotal" min="-2" pref="191" max="-2" attributes="0"/>
+                                          <Component id="comboTipo" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="nome" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="numPessoas" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="out" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                       <Component id="comboAndar" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="buttonGerar" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel11" min="-2" pref="114" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel11" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                                  <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                              <Component id="nomeRecepcionista" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="comboLingua" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nomeRecepcionista" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -140,10 +147,15 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboLingua" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonSair" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="buttonGerar" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -285,7 +297,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
             <StringItem index="0" value="PLATINUM (SEM VISTA MAR)"/>
-            <StringItem index="1" value="GOLDEN (LATERAL COM VISTA PARA O MAR DA SACADA)"/>
+            <StringItem index="1" value="GOLDEN (LATERAL - VISTA SACADA)"/>
             <StringItem index="2" value="DIAMOND (FRENTE MAR)"/>
             <StringItem index="3" value="MASTER (FRENTE MAR COM HIDROMASSAGEM)"/>
           </StringArray>
@@ -340,6 +352,27 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboLingua">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Portugu&#xea;s"/>
+            <StringItem index="1" value="Espanhol"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel12">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Idioma"/>
       </Properties>
     </Component>
   </SubComponents>
