@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-10-05T18:06:19 -->
+<!-- 2017-10-06T15:26:04 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Voucher" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="237caef1-8696-44b8-a1ec-7631d80cd6c8">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="logo" class="java.awt.Image"/>
@@ -181,14 +181,14 @@
 				<text><![CDATA[Informações Adicionais:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="40" width="550" height="39" uuid="f68646c5-551a-4db7-a4b8-b1ce2f3a3270"/>
+				<reportElement x="2" y="60" width="550" height="39" uuid="f68646c5-551a-4db7-a4b8-b1ce2f3a3270"/>
 				<textElement>
 					<font fontName="Arial Black" size="12" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Pacotes fechados serão cobrados integralmente, o check-out antecipado não dará direito à devolução ou restituição de valores.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="80" width="550" height="60" uuid="8825ace5-1618-4404-8ab7-572bdd997ab8">
+				<reportElement x="2" y="100" width="550" height="60" uuid="8825ace5-1618-4404-8ab7-572bdd997ab8">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<textElement>
@@ -197,28 +197,28 @@
 				<text><![CDATA[Prazo de cancelamento de hospedagem até 30 dias antes do check-in. Dentro deste período as devoluções serão realizadas através de transferências bancárias, descontados os encargos devidos.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="140" width="550" height="40" uuid="16a721ea-2d1c-487e-ac1c-32e90d0d346e"/>
+				<reportElement x="2" y="160" width="550" height="40" uuid="16a721ea-2d1c-487e-ac1c-32e90d0d346e"/>
 				<textElement>
 					<font fontName="Arial Black" size="12" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Para cancelamentos com menos de 30 dias antes do check-in, o valor já pago, se converterá em Voucher Crédito.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="180" width="550" height="20" uuid="7d65ed4b-89e5-4c7a-91a5-49c25333e445"/>
+				<reportElement x="2" y="200" width="550" height="20" uuid="7d65ed4b-89e5-4c7a-91a5-49c25333e445"/>
 				<textElement>
 					<font fontName="Arial Black" size="12" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Por medidas de segurança, não serão feitas devoluções em dinheiro. ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="200" width="550" height="40" uuid="17ba0e23-4773-4b41-a7b9-11262b6647bb"/>
+				<reportElement x="2" y="220" width="550" height="40" uuid="17ba0e23-4773-4b41-a7b9-11262b6647bb"/>
 				<textElement>
 					<font fontName="Arial Black" size="12" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[O não comparecimento na data do check-in, “NO SHOW”, acarretará cobrança da primeira diária.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="260" width="120" height="20" uuid="fa612e35-0d87-41ae-91f1-f781c5d9e3a7">
+				<reportElement x="0" y="270" width="120" height="20" uuid="fa612e35-0d87-41ae-91f1-f781c5d9e3a7">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<textElement>
@@ -227,14 +227,14 @@
 				<text><![CDATA[Atenciosamente;]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="280" width="330" height="20" uuid="8931ab12-f264-42f4-83c4-5f209d4287dc"/>
+				<reportElement x="0" y="290" width="330" height="20" uuid="8931ab12-f264-42f4-83c4-5f209d4287dc"/>
 				<textElement>
 					<font fontName="Arial Black" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{recepcionista}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="300" width="70" height="20" uuid="8f2e1565-9dbd-43cd-bef5-4a63ed300fc9">
+				<reportElement x="0" y="310" width="70" height="20" uuid="8f2e1565-9dbd-43cd-bef5-4a63ed300fc9">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<textElement>
@@ -277,6 +277,15 @@
 					<font fontName="Arial Black" size="10" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Reservas@marinchateau.com / www.marinchateau.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="400" height="20" uuid="59743509-23a5-4c44-8d25-1c7bc3cea9e8">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial Black" size="12" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Check-in: 15:00hrs - Check-out: 12:00hrs]]></text>
 			</staticText>
 		</band>
 	</detail>

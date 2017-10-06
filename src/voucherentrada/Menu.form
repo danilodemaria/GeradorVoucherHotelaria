@@ -60,10 +60,8 @@
                                               <Component id="valorTotal" min="-2" pref="191" max="-2" attributes="0"/>
                                               <Component id="comboTipo" alignment="0" max="32767" attributes="0"/>
                                               <Component id="nome" alignment="0" max="32767" attributes="0"/>
-                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="numPessoas" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="out" alignment="0" pref="191" max="32767" attributes="0"/>
-                                              </Group>
+                                              <Component id="numPessoas" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="out" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Component id="buttonGerar" min="-2" max="-2" attributes="0"/>
                                       </Group>

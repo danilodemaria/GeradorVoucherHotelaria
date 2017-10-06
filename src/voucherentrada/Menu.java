@@ -1,4 +1,3 @@
-
 package voucherentrada;
 
 import java.awt.image.BufferedImage;
@@ -7,6 +6,8 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -18,6 +19,7 @@ import javax.swing.text.MaskFormatter;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -25,12 +27,8 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Menu
-     */
-    
     MaskFormatter mascaraData;
-    
+
     public Menu() {
         initComponents();
         this.setResizable(false);
@@ -39,7 +37,6 @@ public class Menu extends javax.swing.JFrame {
         valorRecebido.addKeyListener(new ValorMasc(valorRecebido, 8, 2));
         AplicaNimbusLookAndFeel.pegaNimbus();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -261,97 +258,74 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSairMouseClicked
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_buttonSairMouseClicked
 
     private void buttonGerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonGerarMouseClicked
-        double vr=0,vt=0,total=0;
-        String aux1,aux2,saldo;
-        
+        double vr = 0, vt = 0, total = 0;
+        String aux1, aux2, saldo,data;
+        JasperReport jr = null;
+        String aux = System.getProperty("user.home") + "/Desktop/Voucher de Entrada/";
+        JasperPrint jp = null;
         DecimalFormat formatoDois = new DecimalFormat("R$ ##,###,###,###,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
         formatoDois.setMinimumFractionDigits(2);
         formatoDois.setParseBigDecimal(true);
-        
+        data=new SimpleDateFormat("dd-MM-yyyy HHmmss").format(Calendar.getInstance().getTime());
+        //Conversão de mascara monetária real para double (banco)
         aux1 = valorRecebido.getText();
         aux1 = aux1.replace(".", "");
-        aux1 = aux1.replace(",","."); 
+        aux1 = aux1.replace(",", ".");
         vr = Double.parseDouble(aux1);
-        
         aux2 = valorTotal.getText();
         aux2 = aux2.replace(".", "");
-        aux2 = aux2.replace(",","."); 
-        
-               
+        aux2 = aux2.replace(",", ".");
         vt = Double.parseDouble(aux2);
-        
         total = vt - vr;
-        
-        
         saldo = formatoDois.format(total);
-        
+
         URL url = this.getClass().getResource("/Imagens/01.jpg");
         BufferedImage img = null;
         try {
             img = ImageIO.read(url);
         } catch (IOException e) {
         }
-        
-        URL url1 = this.getClass().getResource("/Imagens/02.jpg");
-        BufferedImage img1 = null;
-        try {
-            img1 = ImageIO.read(url1);
-        } catch (IOException e) {
-        }
-        
-        
 
-        JasperReport jr = null;
         try {
-            jr = JasperCompileManager.compileReport(
-                    this.getClass().getResourceAsStream("/voucherentrada/Voucher.jrxml"));
-        } catch (JRException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("hospede", nome.getText().toUpperCase());
-        params.put("valorTotal", "R$ "+valorTotal.getText());
-        params.put("valorRecebido", "R$ "+valorRecebido.getText());
-        params.put("in",in.getText());
-        params.put("out",out.getText());
-        params.put("numPessoas",numPessoas.getText());
-        params.put("saldo",saldo);
-        params.put("recepcionista",nomeRecepcionista.getText()+".");
-        params.put("tipo",(String) comboTipo.getSelectedItem());
-        params.put("andar",(String) comboAndar.getSelectedItem());
-        params.put("logo", img);
-        params.put("logo1",img1);
-
-        JasperPrint jp = null;
-        try {
+            jr = JasperCompileManager.compileReport(this.getClass().getResourceAsStream("/voucherentrada/Voucher.jrxml"));
+            
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("hospede", nome.getText().toUpperCase());
+            params.put("valorTotal", "R$ " + valorTotal.getText());
+            params.put("valorRecebido", "R$ " + valorRecebido.getText());
+            params.put("in", in.getText());
+            params.put("out", out.getText());
+            params.put("numPessoas", numPessoas.getText());
+            params.put("saldo", saldo);
+            params.put("recepcionista", nomeRecepcionista.getText() + ".");
+            params.put("tipo", (String) comboTipo.getSelectedItem());
+            params.put("andar", (String) comboAndar.getSelectedItem());
+            params.put("logo", img);
             jp = JasperFillManager.fillReport(jr, params, new JREmptyDataSource());
+            JasperViewer.viewReport(jp, false);
+            JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nome.getText().toUpperCase() + ".pdf");
         } catch (JRException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        JasperViewer.viewReport(jp, false);
-    
         limpaCampos();
     }//GEN-LAST:event_buttonGerarMouseClicked
 
-    public void limpaCampos(){
+    public void limpaCampos() {
         nomeRecepcionista.setText(null);
         nome.setText(null);
-        valorRecebido.setText(null);      
+        valorRecebido.setText(null);
         valorTotal.setText(null);
         numPessoas.setText(null);
         in.setText(null);
         out.setText(null);
         comboTipo.setSelectedIndex(0);
-        comboAndar.setSelectedIndex(0);        
+        comboAndar.setSelectedIndex(0);
     }
-    
+
     /**
      * @param args the command line arguments
      */
