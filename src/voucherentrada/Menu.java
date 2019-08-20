@@ -333,9 +333,9 @@ public class Menu extends javax.swing.JFrame {
             params.put("andar", (String) comboAndar.getSelectedItem());
             params.put("logo", img);
             jp = JasperFillManager.fillReport(jr, params, new JREmptyDataSource());
-            JasperViewer.viewReport(jp, false);
-            JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nome.getText().toUpperCase() + ".pdf");
             limpaCampos();
+            JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nome.getText().toUpperCase() + ".pdf");
+            JasperViewer.viewReport(jp, false);            
         } catch (JRException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -360,9 +360,10 @@ public class Menu extends javax.swing.JFrame {
             params.put("andar", lingua);
             params.put("logo", img);
             jp = JasperFillManager.fillReport(jr, params, new JREmptyDataSource());
-            JasperViewer.viewReport(jp, false);
+            limpaCampos();            
             JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nome.getText().toUpperCase() + ".pdf");
-            limpaCampos();
+            JasperViewer.viewReport(jp, false);
+            
         } catch (JRException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
