@@ -289,7 +289,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void buttonGerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonGerarMouseClicked
         double vr = 0, vt = 0, total = 0;
-        String aux1, aux2, saldo,data,lingua;
+        String aux1, aux2, saldo,data,lingua,nomePDF;
         JasperReport jr = null;
         String aux = System.getProperty("user.home") + "/Desktop/Voucher de Entrada/";
         JasperPrint jp = null;
@@ -308,6 +308,8 @@ public class Menu extends javax.swing.JFrame {
         vt = Double.parseDouble(aux2);
         total = vt - vr;
         saldo = formatoDois.format(total);
+        
+        nomePDF = nome.getText().toUpperCase();
 
         URL url = this.getClass().getResource("/Imagens/01.jpg");
         BufferedImage img = null;
@@ -334,7 +336,7 @@ public class Menu extends javax.swing.JFrame {
             params.put("logo", img);
             jp = JasperFillManager.fillReport(jr, params, new JREmptyDataSource());
             limpaCampos();
-            JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nome.getText().toUpperCase() + ".pdf");
+            JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nomePDF + ".pdf");
             JasperViewer.viewReport(jp, false);            
         } catch (JRException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -361,7 +363,7 @@ public class Menu extends javax.swing.JFrame {
             params.put("logo", img);
             jp = JasperFillManager.fillReport(jr, params, new JREmptyDataSource());
             limpaCampos();            
-            JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nome.getText().toUpperCase() + ".pdf");
+            JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nomePDF + ".pdf");
             JasperViewer.viewReport(jp, false);
             
         } catch (JRException ex) {
