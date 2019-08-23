@@ -1,6 +1,8 @@
 package voucherentrada;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -12,10 +14,13 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.SwingWorker;
 import javax.swing.text.MaskFormatter;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -32,6 +37,7 @@ public class Menu extends javax.swing.JFrame {
 
     public Menu() {
         initComponents();
+        pb.setVisible(false);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         valorTotal.addKeyListener(new ValorMasc(valorTotal, 8, 2));
@@ -39,6 +45,46 @@ public class Menu extends javax.swing.JFrame {
         AplicaNimbusLookAndFeel.pegaNimbus();
         Color minhaCor = new Color(204, 255, 204);
         this.getContentPane().setBackground(minhaCor);
+        buttonGerar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // All code inside SwingWorker runs on a seperate thread
+                pb.setVisible(true);
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                    @Override
+                    public Void doInBackground() throws InterruptedException {
+                        pb.setStringPainted(true);
+                        pb.setIndeterminate(true);
+                        pb.setForeground(Color.BLUE);
+                        pb.setString("CARREGANDO - AGUARDE");
+                        buttonGerar.setEnabled(false);
+                        buttonSair.setEnabled(false);
+                        executa();
+                        return null;
+                    }
+
+                    @Override
+                    public void done() {
+                        try {
+                            Void doc = get();
+                            pb.setString("FINALIZADO");
+                            pb.setIndeterminate(false);
+                            buttonGerar.setEnabled(true);
+                            buttonSair.setEnabled(true);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        } catch (ExecutionException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                };
+
+                // Call the SwingWorker from within the Swing thread
+                worker.execute();
+            }
+        });
+
     }
 
     @SuppressWarnings("unchecked")
@@ -70,6 +116,8 @@ public class Menu extends javax.swing.JFrame {
         comboLingua = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        pb = new javax.swing.JProgressBar();
+        jXStatusBar1 = new org.jdesktop.swingx.JXStatusBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerador de Voucher de Entrada - Marin Chãteau");
@@ -168,15 +216,25 @@ public class Menu extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("*Desenvolvido por Danilo de Maria");
 
+        pb.setBackground(new java.awt.Color(204, 255, 204));
+        pb.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        pb.setForeground(new java.awt.Color(255, 0, 0));
+        pb.setOpaque(true);
+        pb.setRequestFocusEnabled(false);
+        pb.setVerifyInputWhenFocusTarget(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jXStatusBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(144, 144, 144))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -217,21 +275,24 @@ public class Menu extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonGerar))))))
+                                    .addComponent(pb, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(35, 35, 35)
+                                    .addComponent(buttonGerar)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(112, 112, 112))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jXStatusBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -273,9 +334,11 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(comboLingua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13))
         );
@@ -288,15 +351,20 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonSairMouseClicked
 
     private void buttonGerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonGerarMouseClicked
+
+    }//GEN-LAST:event_buttonGerarMouseClicked
+
+    public void executa() {
+
         double vr = 0, vt = 0, total = 0;
-        String aux1, aux2, saldo,data,lingua,nomePDF;
+        String aux1, aux2, saldo, data, lingua, nomePDF;
         JasperReport jr = null;
         String aux = System.getProperty("user.home") + "/Desktop/Voucher de Entrada/";
         JasperPrint jp = null;
         DecimalFormat formatoDois = new DecimalFormat("R$ ##,###,###,###,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
         formatoDois.setMinimumFractionDigits(2);
         formatoDois.setParseBigDecimal(true);
-        data=new SimpleDateFormat("dd-MM-yyyy HHmmss").format(Calendar.getInstance().getTime());
+        data = new SimpleDateFormat("dd-MM-yyyy HHmmss").format(Calendar.getInstance().getTime());
         //Conversão de mascara monetária real para double (banco)
         aux1 = valorRecebido.getText();
         aux1 = aux1.replace(".", "");
@@ -308,7 +376,7 @@ public class Menu extends javax.swing.JFrame {
         vt = Double.parseDouble(aux2);
         total = vt - vr;
         saldo = formatoDois.format(total);
-        
+
         nomePDF = nome.getText().toUpperCase();
 
         URL url = this.getClass().getResource("/Imagens/01.jpg");
@@ -317,61 +385,60 @@ public class Menu extends javax.swing.JFrame {
             img = ImageIO.read(url);
         } catch (IOException e) {
         }
-        if(comboLingua.getSelectedItem().equals("Português")){
+        if (comboLingua.getSelectedItem().equals("Português")) {
 
-        try {
-            jr = JasperCompileManager.compileReport(this.getClass().getResourceAsStream("/voucherentrada/Voucher.jrxml"));
-            
-            Map<String, Object> params = new HashMap<String, Object>();
-            params.put("hospede", nome.getText().toUpperCase());
-            params.put("valorTotal", "R$ " + valorTotal.getText());
-            params.put("valorRecebido", "R$ " + valorRecebido.getText());
-            params.put("in", in.getText());
-            params.put("out", out.getText());
-            params.put("numPessoas", numPessoas.getText());
-            params.put("saldo", saldo);
-            params.put("recepcionista", nomeRecepcionista.getText() + ".");
-            params.put("tipo", (String) comboTipo.getSelectedItem());
-            params.put("andar", (String) comboAndar.getSelectedItem());
-            params.put("logo", img);
-            jp = JasperFillManager.fillReport(jr, params, new JREmptyDataSource());
-            limpaCampos();
-            JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nomePDF + ".pdf");
-            JasperViewer.viewReport(jp, false);            
-        } catch (JRException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        }else{
-              try {
-            lingua = String.valueOf(comboAndar.getSelectedItem());
-            jr = JasperCompileManager.compileReport(this.getClass().getResourceAsStream("/voucherentrada/VoucherEsp.jrxml"));
-            if(lingua.equals("TÉRREO")){
-                lingua = "PLANTA BAJA";
+            try {
+                jr = JasperCompileManager.compileReport(this.getClass().getResourceAsStream("/voucherentrada/Voucher.jrxml"));
+
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("hospede", nome.getText().toUpperCase());
+                params.put("valorTotal", "R$ " + valorTotal.getText());
+                params.put("valorRecebido", "R$ " + valorRecebido.getText());
+                params.put("in", in.getText());
+                params.put("out", out.getText());
+                params.put("numPessoas", numPessoas.getText());
+                params.put("saldo", saldo);
+                params.put("recepcionista", nomeRecepcionista.getText() + ".");
+                params.put("tipo", (String) comboTipo.getSelectedItem());
+                params.put("andar", (String) comboAndar.getSelectedItem());
+                params.put("logo", img);
+                jp = JasperFillManager.fillReport(jr, params, new JREmptyDataSource());
+                limpaCampos();
+                JasperExportManager.exportReportToPdfFile(jp, aux + data + " - " + nomePDF + ".pdf");
+                JasperViewer.viewReport(jp, false);
+            } catch (JRException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Map<String, Object> params = new HashMap<String, Object>();
-            params.put("hospede", nome.getText().toUpperCase());
-            params.put("valorTotal", "R$ " + valorTotal.getText());
-            params.put("valorRecebido", "R$ " + valorRecebido.getText());
-            params.put("in", in.getText());
-            params.put("out", out.getText());
-            params.put("numPessoas", numPessoas.getText());
-            params.put("saldo", saldo);
-            params.put("recepcionista", nomeRecepcionista.getText() + ".");
-            params.put("tipo", (String) comboTipo.getSelectedItem());
-            params.put("andar", lingua);
-            params.put("logo", img);
-            jp = JasperFillManager.fillReport(jr, params, new JREmptyDataSource());
-            limpaCampos();            
-            JasperExportManager.exportReportToPdfFile(jp, aux+data+" - "+nomePDF + ".pdf");
-            JasperViewer.viewReport(jp, false);
-            
-        } catch (JRException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+
+        } else {
+            try {
+                lingua = String.valueOf(comboAndar.getSelectedItem());
+                jr = JasperCompileManager.compileReport(this.getClass().getResourceAsStream("/voucherentrada/VoucherEsp.jrxml"));
+                if (lingua.equals("TÉRREO")) {
+                    lingua = "PLANTA BAJA";
+                }
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("hospede", nome.getText().toUpperCase());
+                params.put("valorTotal", "R$ " + valorTotal.getText());
+                params.put("valorRecebido", "R$ " + valorRecebido.getText());
+                params.put("in", in.getText());
+                params.put("out", out.getText());
+                params.put("numPessoas", numPessoas.getText());
+                params.put("saldo", saldo);
+                params.put("recepcionista", nomeRecepcionista.getText() + ".");
+                params.put("tipo", (String) comboTipo.getSelectedItem());
+                params.put("andar", lingua);
+                params.put("logo", img);
+                jp = JasperFillManager.fillReport(jr, params, new JREmptyDataSource());
+                limpaCampos();
+                JasperExportManager.exportReportToPdfFile(jp, aux + data + " - " + nomePDF + ".pdf");
+                JasperViewer.viewReport(jp, false);
+
+            } catch (JRException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        }
-        
-    }//GEN-LAST:event_buttonGerarMouseClicked
+    }
 
     public void limpaCampos() {
         nomeRecepcionista.setText(null);
@@ -441,10 +508,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private org.jdesktop.swingx.JXStatusBar jXStatusBar1;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField nomeRecepcionista;
     private javax.swing.JTextField numPessoas;
     private javax.swing.JTextField out;
+    private javax.swing.JProgressBar pb;
     private javax.swing.JTextField valorRecebido;
     private javax.swing.JTextField valorTotal;
     // End of variables declaration//GEN-END:variables
